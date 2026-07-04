@@ -54,8 +54,16 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 // -----------------------------------------------------------------------
 // Create / use database
 // -----------------------------------------------------------------------
-$pdo->exec("CREATE DATABASE IF NOT EXISTS `$env_name` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;");
-$pdo->exec("USE `$env_name`;");
+try {
+    $pdo->exec("CREATE DATABASE IF NOT EXISTS `$env_name` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;");
+} catch (PDOException $e) {
+    // Ignore errors for shared hosts where we can't create databases
+}
+try {
+    $pdo->exec("USE `$env_name`;");
+} catch (PDOException $e) {
+    // Ignore if it fails, but we might need to select the DB
+}
 
 // -----------------------------------------------------------------------
 // Tables
