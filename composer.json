@@ -1,0 +1,8 @@
+{
+  "name": "solva/flexpay",
+  "description": "FlexPay web application",
+  "type": "project",
+  "require": {
+    "php": ">=8.0"
+  }
+}

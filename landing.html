@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlexPay — Pay Globally. From Togo.</title>
+    <meta name="description" content="FlexPay vous permet de recharger un wallet en FCFA via Mobile Money et d'accéder aux services digitaux internationaux depuis le Togo.">
+    <link rel="icon" type="image/png" href="assets/images/iconeflexpay.png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --purple: #6C4CF1;
+            --purple-light: #8B6EF3;
+            --purple-dark: #4F35CC;
+            --purple-pale: #F0EEFF;
+            --purple-mid: #EDE9FE;
+            --black: #0D0D0D;
+            --dark: #1A1A2E;
+            --gray: #6B7280;
+            --gray-light: #F9FAFB;
+            --border: #E5E7EB;
+            --white: #FFFFFF;
+            --radius: 20px;
+            --shadow: 0 4px 24px rgba(108, 76, 241, 0.10);
+            --shadow-lg: 0 20px 60px rgba(108, 76, 241, 0.18);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--white);
+            color: var(--black);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(108,76,241,0.08);
+            padding: 0 5%;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: box-shadow 0.3s;
+        }
+
+        header.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,0.08); }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 38px; height: 38px;
+            background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            color: #fff;
+            font-size: 18px;
+            box-shadow: 0 4px 12px rgba(108,76,241,0.4);
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--black);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span { color: var(--purple); }
+
+        nav { display: flex; align-items: center; gap: 36px; }
+
+        nav a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover { color: var(--purple); }
+
+        .header-actions { display: flex; align-items: center; gap: 12px; }
+
+        .btn-login {
+            padding: 9px 20px;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            background: transparent;
+            color: var(--black);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-login:hover { border-color: var(--purple); color: var(--purple); }
+
+        .btn-primary {
+            padding: 10px 22px;
+            background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            box-shadow: 0 4px 14px rgba(108,76,241,0.35);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(108,76,241,0.45);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 140px 5% 100px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 60px;
+            max-width: 1440px;
+            margin: 0 auto;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: -200px; right: -100px;
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(108,76,241,0.12) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            bottom: -100px; left: -200px;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(108,76,241,0.07) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--purple-pale);
+            color: var(--purple);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            border: 1px solid rgba(108,76,241,0.15);
+        }
+
+        .hero-badge i { font-size: 11px; }
+
+        .hero-title {
+            font-size: 72px;
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -2px;
+            color: var(--black);
+            margin-bottom: 20px;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, var(--purple) 0%, #A78BFA 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--gray);
+            max-width: 480px;
+            line-height: 1.7;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 52px;
+            flex-wrap: wrap;
+        }
+
+        .btn-hero-primary {
+            padding: 15px 32px;
+            background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+            color: #fff;
+            border: none;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 8px 24px rgba(108,76,241,0.4);
+            transition: all 0.25s;
+            white-space: nowrap;
+        }
+
+        .btn-hero-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(108,76,241,0.5); }
+
+        .btn-hero-outline {
+            padding: 15px 32px;
+            background: transparent;
+            color: var(--purple);
+            border: 2px solid var(--purple);
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.25s;
+        }
+
+        .btn-hero-outline:hover { background: var(--purple-pale); transform: translateY(-2px); }
+
+        .trust-indicators {
+            display: flex;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .trust-item i { color: var(--purple); font-size: 16px; }
+
+        /* ===== PHONE MOCKUP ===== */
+        .hero-right {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .phone-wrapper {
+            position: relative;
+            z-index: 2;
+        }
+
+        .phone-frame {
+            width: 290px;
+            background: #0D0D1A;
+            border-radius: 44px;
+            padding: 14px;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.08) inset;
+            position: relative;
+        }
+
+        .phone-notch {
+            width: 120px; height: 28px;
+            background: #0D0D1A;
+            border-radius: 0 0 20px 20px;
+            margin: 0 auto 4px;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .phone-notch::before {
+            content: '';
+            width: 10px; height: 10px;
+            background: #1A1A2E;
+            border-radius: 50%;
+            border: 2px solid #333;
+        }
+
+        .phone-screen {
+            background: linear-gradient(160deg, #0B1021 0%, #111827 100%);
+            border-radius: 34px;
+            overflow: hidden;
+            padding: 16px 14px;
+        }
+
+        .phone-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .phone-logo {
+            font-size: 14px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .phone-logo span { color: #FF9900; }
+
+        .phone-bell { color: rgba(255,255,255,0.5); font-size: 14px; }
+
+        .wallet-card-phone {
+            background: linear-gradient(135deg, #6C4CF1 0%, #4F35CC 60%, #2D1B8E 100%);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wallet-card-phone::before {
+            content: '';
+            position: absolute;
+            top: -30px; right: -30px;
+            width: 100px; height: 100px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50%;
+        }
+
+        .wallet-label { font-size: 10px; color: rgba(255,255,255,0.7); font-weight: 500; margin-bottom: 6px; }
+
+        .wallet-amount {
+            font-size: 26px;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+        }
+
+        .wallet-amount small { font-size: 14px; font-weight: 600; opacity: 0.8; margin-left: 4px; }
+
+        .wallet-recharge-btn {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 7px 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .phone-section-title {
+            font-size: 10px;
+            font-weight: 700;
+            color: rgba(255,255,255,0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        .services-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .svc-chip {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 8px 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .svc-icon-phone {
+            width: 28px; height: 28px;
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 13px;
+            font-weight: 900;
+        }
+
+        .svc-chip-name { font-size: 8px; color: rgba(255,255,255,0.6); font-weight: 500; text-align: center; }
+
+        .tx-list { display: flex; flex-direction: column; gap: 8px; }
+
+        .tx-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .tx-dot {
+            width: 28px; height: 28px;
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 11px;
+            flex-shrink: 0;
+        }
+
+        .tx-info { flex: 1; }
+        .tx-name { font-size: 10px; font-weight: 600; color: #fff; }
+        .tx-date { font-size: 8px; color: rgba(255,255,255,0.4); }
+        .tx-amount { font-size: 11px; font-weight: 700; }
+        .tx-minus { color: #F87171; }
+        .tx-plus { color: #34D399; }
+
+        /* === Floating cards === */
+        .float-card {
+            position: absolute;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(16px);
+            border-radius: 16px;
+            padding: 14px 18px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+            border: 1px solid rgba(255,255,255,0.8);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .float-card-1 {
+            left: -100px;
+            top: 60px;
+            animation-delay: 0s;
+            min-width: 180px;
+        }
+
+        .float-card-2 {
+            right: -80px;
+            bottom: 80px;
+            animation-delay: 1.5s;
+            min-width: 150px;
+        }
+
+        .fc-title { font-size: 11px; font-weight: 700; color: #374151; margin-bottom: 8px; }
+        .fc-logos { display: flex; gap: 8px; align-items: center; }
+
+        .fc-logo-flooz {
+            background: #FF6600;
+            color: #fff;
+            font-size: 9px;
+            font-weight: 900;
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        .fc-logo-tmoney {
+            background: #00A651;
+            color: #fff;
+            font-size: 9px;
+            font-weight: 900;
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        .fc-shield {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .fc-shield-icon {
+            width: 36px; height: 36px;
+            background: linear-gradient(135deg, #6C4CF1, #4F35CC);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .fc-shield-text { font-size: 13px; font-weight: 700; color: #111; }
+        .fc-shield-sub { font-size: 10px; color: #6B7280; }
+
+        /* ===== LOGOS STRIP ===== */
+        .logos-strip {
+            background: var(--gray-light);
+            padding: 28px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logos-strip-label { font-size: 13px; color: var(--gray); font-weight: 500; }
+
+        .logos-strip-logos {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .brand-logo {
+            font-size: 15px;
+            font-weight: 800;
+            color: #9CA3AF;
+            letter-spacing: -0.5px;
+            transition: color 0.2s;
+        }
+
+        .brand-logo:hover { color: var(--purple); }
+
+        /* ===== SERVICES SECTION ===== */
+        .section {
+            padding: 100px 5%;
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            display: inline-block;
+            background: var(--purple-pale);
+            color: var(--purple);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 6px 14px;
+            border-radius: 50px;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            color: var(--black);
+            margin-bottom: 16px;
+        }
+
+        .section-sub {
+            font-size: 18px;
+            color: var(--gray);
+            max-width: 540px;
+            margin-bottom: 60px;
+            line-height: 1.7;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+
+        .service-card {
+            background: #fff;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px 20px;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--purple), var(--purple-light));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .service-card:hover {
+            border-color: rgba(108,76,241,0.3);
+            box-shadow: 0 12px 40px rgba(108,76,241,0.12);
+            transform: translateY(-4px);
+        }
+
+        .service-card:hover::before { opacity: 1; }
+
+        .sc-icon-wrap {
+            width: 52px; height: 52px;
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px;
+            margin-bottom: 16px;
+        }
+
+        .sc-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--black);
+            margin-bottom: 12px;
+        }
+
+        .sc-items {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .sc-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        .sc-item i { color: var(--purple); font-size: 11px; }
+
+        .sc-more {
+            font-size: 13px;
+            color: var(--purple);
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        /* ===== HOW IT WORKS ===== */
+        .how-bg {
+            background: linear-gradient(160deg, #F8F7FF 0%, #FFF 100%);
+            padding: 100px 5%;
+        }
+
+        .how-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            position: relative;
+        }
+
+        .steps-grid::before {
+            content: '';
+            position: absolute;
+            top: 36px;
+            left: 12%;
+            right: 12%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--purple), var(--purple-light));
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        .step-card {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 32px 24px;
+            border: 1.5px solid var(--border);
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s;
+        }
+
+        .step-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: rgba(108,76,241,0.2); }
+
+        .step-number {
+            width: 48px; height: 48px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+            color: #fff;
+            font-size: 18px;
+            font-weight: 900;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 20px;
+            box-shadow: 0 6px 16px rgba(108,76,241,0.35);
+        }
+
+        .step-title { font-size: 17px; font-weight: 800; color: var(--black); margin-bottom: 8px; }
+        .step-desc { font-size: 14px; color: var(--gray); line-height: 1.6; }
+
+        /* ===== BENEFITS ===== */
+        .benefits-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 60px;
+        }
+
+        .benefit-card {
+            text-align: center;
+            padding: 36px 24px;
+            border-radius: var(--radius);
+            background: #fff;
+            border: 1.5px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .benefit-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: rgba(108,76,241,0.2); }
+
+        .benefit-icon {
+            width: 64px; height: 64px;
+            border-radius: 18px;
+            background: var(--purple-pale);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 28px;
+            color: var(--purple);
+            margin: 0 auto 20px;
+            transition: all 0.3s;
+        }
+
+        .benefit-card:hover .benefit-icon { background: linear-gradient(135deg, var(--purple), var(--purple-dark)); color: #fff; }
+
+        .benefit-title { font-size: 17px; font-weight: 800; color: var(--black); margin-bottom: 8px; }
+        .benefit-desc { font-size: 14px; color: var(--gray); line-height: 1.6; }
+
+        /* ===== STATS ===== */
+        .stats-section {
+            background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 60%, #2D1B8E 100%);
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .stats-inner { max-width: 1440px; margin: 0 auto; }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .stat-item {}
+
+        .stat-number {
+            font-size: 52px;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label { font-size: 15px; color: rgba(255,255,255,0.7); font-weight: 500; }
+
+        /* ===== PRICING ===== */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: #fff;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            padding: 36px 28px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--purple);
+            box-shadow: 0 20px 60px rgba(108,76,241,0.2);
+        }
+
+        .pricing-card:hover { transform: translateY(-4px); }
+
+        .pricing-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 50px;
+            white-space: nowrap;
+        }
+
+        .pricing-name { font-size: 15px; font-weight: 700; color: var(--gray); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+
+        .pricing-price {
+            font-size: 42px;
+            font-weight: 900;
+            color: var(--black);
+            letter-spacing: -1.5px;
+            margin-bottom: 6px;
+        }
+
+        .pricing-price small { font-size: 15px; font-weight: 500; color: var(--gray); }
+        .pricing-sub { font-size: 13px; color: var(--gray); margin-bottom: 28px; }
+
+        .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #374151;
+        }
+
+        .pricing-features li i { color: var(--purple); font-size: 13px; }
+
+        .btn-pricing {
+            width: 100%;
+            padding: 13px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-pricing-outline {
+            background: transparent;
+            border: 2px solid var(--border);
+            color: var(--black);
+        }
+
+        .btn-pricing-outline:hover { border-color: var(--purple); color: var(--purple); }
+
+        .btn-pricing-filled {
+            background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+            border: none;
+            color: #fff;
+            box-shadow: 0 6px 20px rgba(108,76,241,0.4);
+        }
+
+        .btn-pricing-filled:hover { transform: translateY(-1px); box-shadow: 0 10px 28px rgba(108,76,241,0.5); }
+
+        /* ===== FAQ ===== */
+        .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+
+        .faq-item {
+            border: 1.5px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+
+        .faq-item.open { border-color: rgba(108,76,241,0.3); }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--black);
+            user-select: none;
+            gap: 16px;
+        }
+
+        .faq-question i {
+            color: var(--purple);
+            font-size: 13px;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+
+        .faq-item.open .faq-question i { transform: rotate(180deg); }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+        }
+
+        .faq-item.open .faq-answer { max-height: 200px; }
+
+        .faq-answer-inner {
+            padding: 0 24px 20px;
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            padding: 100px 5%;
+            text-align: center;
+        }
+
+        .cta-inner {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 60%, #2D1B8E 100%);
+            border-radius: 28px;
+            padding: 72px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 250px; height: 250px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 50%;
+        }
+
+        .cta-box::after {
+            content: '';
+            position: absolute;
+            bottom: -80px; left: -40px;
+            width: 200px; height: 200px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 50%;
+        }
+
+        .cta-title {
+            font-size: 44px;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .cta-sub {
+            font-size: 17px;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 36px;
+            line-height: 1.6;
+        }
+
+        .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+        .btn-cta-white {
+            padding: 14px 32px;
+            background: #fff;
+            color: var(--purple);
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-cta-white:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,0,0,0.25); }
+
+        .btn-cta-outline {
+            padding: 14px 32px;
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.4);
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-cta-outline:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #0D0D1A;
+            padding: 72px 5% 36px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .footer-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand .logo-text { color: #fff; font-size: 24px; }
+        .footer-tagline { font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 12px; line-height: 1.6; max-width: 240px; }
+
+        .footer-socials { display: flex; gap: 10px; margin-top: 20px; }
+
+        .social-btn {
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.07);
+            display: flex; align-items: center; justify-content: center;
+            color: rgba(255,255,255,0.6);
+            font-size: 14px;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .social-btn:hover { background: var(--purple); color: #fff; border-color: var(--purple); }
+
+        .footer-col-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links { display: flex; flex-direction: column; gap: 10px; }
+
+        .footer-links a {
+            font-size: 14px;
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: #fff; }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding-top: 28px;
+            font-size: 13px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-bottom-links { display: flex; gap: 24px; }
+        .footer-bottom-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+        .footer-bottom-links a:hover { color: #fff; }
+
+        .flag { display: inline; font-size: 16px; }
+
+        /* ===== MOBILE MONEY BADGE ===== */
+        .mm-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--purple-pale);
+            border: 1px solid rgba(108,76,241,0.2);
+            border-radius: 8px;
+            padding: 5px 10px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--purple);
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 3px; }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 1100px) {
+            .hero { grid-template-columns: 1fr; text-align: center; }
+            .hero-title { font-size: 52px; }
+            .hero-ctas, .trust-indicators { justify-content: center; }
+            .hero-right { display: none; }
+            .services-grid { grid-template-columns: repeat(3, 1fr); }
+            .steps-grid { grid-template-columns: repeat(2, 1fr); }
+            .steps-grid::before { display: none; }
+            .benefits-row { grid-template-columns: repeat(2, 1fr); }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-top { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 720px) {
+            .hero-title { font-size: 38px; }
+            .section-title { font-size: 32px; }
+            nav { display: none; }
+            .header-actions { gap: 6px; }
+            .btn-login { padding: 8px 12px; font-size: 12px; border-width: 1px; }
+            .btn-primary { padding: 8px 12px; font-size: 12px; gap: 4px; }
+            .btn-primary i { display: none; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .pricing-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header id="main-header">
+    <a href="#" class="logo">
+        <img src="assets/images/logosolo.png" alt="FlexPay Logo" style="height: 38px; object-fit: contain;">
+        <span class="logo-text">Flex<span>Pay</span></span>
+    </a>
+    <nav>
+        <a href="#hero">Accueil</a>
+        <a href="#services">Services</a>
+        <a href="#how">Comment ça marche</a>
+        <a href="#pricing">Tarifs</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+        <a href="index.php" class="btn-login">Connexion</a>
+        <a href="index.php#register" class="btn-primary"><i class="fa-solid fa-user-plus"></i> Créer un compte</a>
+    </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+    <div class="hero-bg"></div>
+
+    <div class="hero-left">
+        <div class="hero-badge">
+            <i class="fa-solid fa-circle" style="color:#22C55E; font-size:8px;"></i>
+            Disponible au Togo · Flooz &amp; T-Money acceptés
+        </div>
+        <h1 class="hero-title">
+            Pay Globally.<br>
+            From <span class="highlight">Togo.</span>
+        </h1>
+        <p class="hero-subtitle">
+            FlexPay vous permet de recharger un wallet en FCFA via Mobile Money et d'accéder aux meilleurs services digitaux du monde — Netflix, Spotify, Amazon et plus encore.
+        </p>
+        <div class="hero-ctas" style="flex-wrap: wrap;">
+            <a href="index.php" class="btn-hero-primary">
+                <i class="fa-solid fa-rocket"></i>
+                Ouvrir l'App Web
+            </a>
+            <button id="installAppBtn" class="btn-hero-primary" style="display: none; background: #000; border: none; cursor: pointer; color: white;">
+                <i class="fa-solid fa-download"></i>
+                Télécharger l'App
+            </button>
+            <a href="#how" class="btn-hero-outline">
+                <i class="fa-solid fa-play"></i>
+                Comment ça marche
+            </a>
+        </div>
+        <div class="trust-indicators">
+            <div class="trust-item"><i class="fa-solid fa-shield-halved"></i> Paiements sécurisés</div>
+            <div class="trust-item"><i class="fa-solid fa-headset"></i> Support 24/7</div>
+            <div class="trust-item"><i class="fa-solid fa-circle-check"></i> Livraison garantie</div>
+        </div>
+    </div>
+
+    <div class="hero-right">
+        <!-- Floating card 1 -->
+        <div class="float-card float-card-1">
+            <div class="fc-title">📱 Recharge via Mobile Money</div>
+            <div class="fc-logos">
+                <img src="assets/images/logo_flooz.png" alt="Flooz" style="height: 20px; object-fit: contain;">
+                <img src="assets/images/t-money_logo.webp" alt="T-Money" style="height: 20px; object-fit: contain; margin-left: 6px;">
+            </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="phone-wrapper">
+            <img src="assets/images/phototel.png" alt="FlexPay App" style="width: 100%; max-width: 320px; border-radius: 36px; filter: drop-shadow(0 30px 60px rgba(0,0,0,0.15)); display: block; margin: 0 auto; z-index: 2; position: relative;">
+        </div>
+
+        <!-- Floating card 2 -->
+        <div class="float-card float-card-2">
+            <div class="fc-shield">
+                <div class="fc-shield-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <div>
+                    <div class="fc-shield-text">100% Sécurisé</div>
+                    <div class="fc-shield-sub">Transactions cryptées</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== LOGOS STRIP ===== -->
+<div class="logos-strip">
+    <span class="logos-strip-label">Nos partenaires services</span>
+    <div class="logos-strip-logos">
+        <span class="brand-logo">NETFLIX</span>
+        <span class="brand-logo">SPOTIFY</span>
+        <span class="brand-logo">CANAL+</span>
+        <span class="brand-logo">DISNEY+</span>
+        <span class="brand-logo">AMAZON</span>
+        <span class="brand-logo">SHEIN</span>
+        <span class="brand-logo">PlayStation</span>
+        <span class="brand-logo">ChatGPT</span>
+    </div>
+</div>
+
+<!-- ===== SERVICES ===== -->
+<section class="section" id="services">
+    <div class="section-label">Nos services</div>
+    <h2 class="section-title fade-up">Tous vos services favoris<br>en un seul endroit</h2>
+    <p class="section-sub fade-up">Streaming, e-commerce, gaming, SaaS — payez tout en FCFA depuis le Togo.</p>
+
+    <div class="services-grid">
+        <!-- Streaming -->
+        <div class="service-card fade-up">
+            <div class="sc-icon-wrap" style="background:#FFF0F0;"><i class="fa-solid fa-play" style="color:#E50914;"></i></div>
+            <div class="sc-title">Streaming</div>
+            <div class="sc-items">
+                <div class="sc-item"><i class="fa-solid fa-check"></i> Netflix</div>
+                <div class="sc-item"><i class="fa-solid fa-check"></i> Spotify</div>
+                <div class="sc-item"><i class="fa-solid fa-check"></i> Canal+</div>
+                <div class="sc-item"><i class="fa-solid fa-check"></i> Disney+</div>
+                <div class="sc-item"><i class="fa-solid fa-check"></i> Apple TV</div>
+                <div class="sc-item"><i class="fa-solid fa-check"></i> Apple Music</div>
+                <div class="sc-item"><i class="fa-solid fa-check"></i> YouTube Premium</div>
+            </div>
+        </div>
+
+        <!-- E-Commerce -->
+        <div class="service-card fade-up">
+            <div class="sc-icon-wrap" style="background:#FFF7ED;"><i class="fa-solid fa-bag-shopping" style="color:#F97316;"></i></div>
+            <div class="sc-title">E-Commerce</div>
+            <div class="sc-items">
+                <div class="sc-item"><i class="fa-solid fa-check"></i> Shein</div>
+                <div class="sc-item"><i class="fa-solid fa-check"></i> AliExpress</div>
+                <div class="sc-item"><i class="fa-solid fa-check"></i> Amazon (US/FR)</div>
+            </div>
+            <div class="sc-more">Taux de change live USD→FCFA</div>
+        </div>
+
+        <!-- Gaming -->
+        <div class="service-card fade-up">
+            <div class="sc-icon-wrap" style="background:#EEF2FF;"><i class="fa-solid fa-gamepad" style="color:#6C4CF1;"></i></div>
+            <div class="sc-title">Gaming</div>
+            <div class="sc-items">
+                <div class="sc-item"><i class="fa-solid fa-check"></i> PlayStation Store</div>
+                <div class="sc-item"><i class="fa-solid fa-check"></i> Xbox / Game Pass</div>
+                <div class="sc-item"><i class="fa-solid fa-check"></i> Steam</div>
+            </div>
+            <div class="sc-more">Cartes cadeaux disponibles</div>
+        </div>
+
+        <!-- SaaS -->
+        <div class="service-card fade-up">
+            <div class="sc-icon-wrap" style="background:#F0FDF4;"><i class="fa-solid fa-cube" style="color:#16A34A;"></i></div>
+            <div class="sc-title">SaaS &amp; Logiciels</div>
+            <div class="sc-items">
+                <div class="sc-item"><i class="fa-solid fa-check"></i> ChatGPT Plus</div>
+                <div class="sc-item"><i class="fa-solid fa-check"></i> Canva Pro</div>
+                <div class="sc-item"><i class="fa-solid fa-check"></i> NordVPN</div>
+                <div class="sc-item"><i class="fa-solid fa-check"></i> ExpressVPN</div>
+            </div>
+        </div>
+
+        <!-- More -->
+        <div class="service-card fade-up" style="background: linear-gradient(135deg, #F8F7FF, #EDE9FE); border-color: rgba(108,76,241,0.2); display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:12px;">
+            <div style="width:56px; height:56px; border-radius:16px; background:linear-gradient(135deg, #6C4CF1, #4F35CC); display:flex; align-items:center; justify-content:center; color:#fff; font-size:24px; margin-bottom:4px; box-shadow: 0 6px 16px rgba(108,76,241,0.4);">
+                <i class="fa-solid fa-plus"></i>
+            </div>
+            <div class="sc-title" style="color: var(--purple);">Et bien plus…</div>
+            <p style="font-size:13px; color:var(--gray); line-height:1.5;">De nouveaux services sont ajoutés régulièrement selon vos demandes.</p>
+            <a href="index.php" style="font-size:13px; color:var(--purple); font-weight:700; text-decoration:none;">Voir tous →</a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<div class="how-bg" id="how">
+    <div class="how-inner">
+        <div style="text-align:center; margin-bottom:60px;">
+            <div class="section-label">Comment ça marche</div>
+            <h2 class="section-title fade-up">Simple. Rapide. Fiable.</h2>
+            <p class="section-sub fade-up" style="margin:0 auto;">En 4 étapes, accédez à tous vos services internationaux depuis Lomé.</p>
+        </div>
+
+        <div class="steps-grid">
+            <div class="step-card fade-up">
+                <div class="step-number">1</div>
+                <div class="step-title">Créez votre compte</div>
+                <div class="step-desc">Inscrivez-vous en 2 minutes avec votre numéro de téléphone. Aucune carte bancaire requise.</div>
+            </div>
+            <div class="step-card fade-up">
+                <div class="step-number">2</div>
+                <div class="step-title">Rechargez votre wallet</div>
+                <div class="step-desc">Déposez des FCFA sur votre wallet FlexPay via Flooz (Togocel) ou T-Money (Moov Africa).</div>
+            </div>
+            <div class="step-card fade-up">
+                <div class="step-number">3</div>
+                <div class="step-title">Choisissez un service</div>
+                <div class="step-desc">Parcourez notre catalogue, sélectionnez Netflix, Shein, PlayStation ou tout autre service.</div>
+            </div>
+            <div class="step-card fade-up">
+                <div class="step-number">4</div>
+                <div class="step-title">Recevez en 3h max</div>
+                <div class="step-desc">Vos identifiants sont livrés par WhatsApp. Streaming garanti en moins de 3h.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== BENEFITS ===== -->
+<section class="section">
+    <div style="text-align:center; margin-bottom:0;">
+        <div class="section-label">Pourquoi FlexPay</div>
+        <h2 class="section-title fade-up">Ce qui nous différencie</h2>
+    </div>
+    <div class="benefits-row">
+        <div class="benefit-card fade-up">
+            <div class="benefit-icon"><i class="fa-solid fa-users"></i></div>
+            <div class="benefit-title">Accessible à tous</div>
+            <div class="benefit-desc">Aucune carte VISA requise. Tout se fait en FCFA via votre téléphone mobile.</div>
+        </div>
+        <div class="benefit-card fade-up">
+            <div class="benefit-icon"><i class="fa-solid fa-bolt"></i></div>
+            <div class="benefit-title">Ultra rapide</div>
+            <div class="benefit-desc">Livraison en 3h max pour le streaming. Commandes e-commerce traitées en 72h.</div>
+        </div>
+        <div class="benefit-card fade-up">
+            <div class="benefit-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="benefit-title">100% fiable</div>
+            <div class="benefit-desc">Remboursement automatique garanti si la commande ne peut pas être traitée.</div>
+        </div>
+        <div class="benefit-card fade-up">
+            <div class="benefit-icon"><i class="fa-solid fa-headset"></i></div>
+            <div class="benefit-title">Support local</div>
+            <div class="benefit-desc">Équipe togolaise disponible 24/7 sur WhatsApp pour vous accompagner.</div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<div class="stats-section">
+    <div class="stats-inner">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">2 000+</div>
+                <div class="stat-label">Clients satisfaits</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">20+</div>
+                <div class="stat-label">Services disponibles</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">&lt; 3h</div>
+                <div class="stat-label">Délai moyen de livraison</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Remboursement garanti</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== PRICING ===== -->
+<section class="section" id="pricing" style="text-align:center;">
+    <div class="section-label">Tarifs transparents</div>
+    <h2 class="section-title fade-up">Aucun abonnement caché</h2>
+    <p class="section-sub fade-up" style="margin:0 auto 60px;">Vous payez uniquement le service + une petite commission FlexPay.</p>
+
+    <div class="pricing-grid">
+        <div class="pricing-card fade-up">
+            <div class="pricing-name">Streaming</div>
+            <div class="pricing-price">+1 500 <small>FCFA</small></div>
+            <div class="pricing-sub">Commission par commande</div>
+            <ul class="pricing-features">
+                <li><i class="fa-solid fa-check"></i> Netflix, Spotify, Canal+, Disney+</li>
+                <li><i class="fa-solid fa-check"></i> Livraison WhatsApp en 3h</li>
+                <li><i class="fa-solid fa-check"></i> Compte neuf ou existant</li>
+                <li><i class="fa-solid fa-check"></i> Remboursement garanti</li>
+            </ul>
+            <a href="index.php" class="btn-pricing btn-pricing-outline">Commander →</a>
+        </div>
+
+        <div class="pricing-card featured fade-up">
+            <div class="pricing-badge">⚡ Le plus populaire</div>
+            <div class="pricing-name">E-Commerce</div>
+            <div class="pricing-price">+10% <small>du prix</small></div>
+            <div class="pricing-sub">Commission par commande</div>
+            <ul class="pricing-features">
+                <li><i class="fa-solid fa-check"></i> Shein, AliExpress, Amazon</li>
+                <li><i class="fa-solid fa-check"></i> Taux USD→FCFA automatique</li>
+                <li><i class="fa-solid fa-check"></i> Livraison à domicile incluse</li>
+                <li><i class="fa-solid fa-check"></i> Suivi de commande en temps réel</li>
+            </ul>
+            <a href="index.php" class="btn-pricing btn-pricing-filled">Commander →</a>
+        </div>
+
+        <div class="pricing-card fade-up">
+            <div class="pricing-name">Gaming &amp; SaaS</div>
+            <div class="pricing-price">+2 000 <small>FCFA</small></div>
+            <div class="pricing-sub">Commission par commande</div>
+            <ul class="pricing-features">
+                <li><i class="fa-solid fa-check"></i> PlayStation, Xbox, Steam</li>
+                <li><i class="fa-solid fa-check"></i> ChatGPT, Canva, VPN</li>
+                <li><i class="fa-solid fa-check"></i> Cartes cadeaux disponibles</li>
+                <li><i class="fa-solid fa-check"></i> Livraison en 3h max</li>
+            </ul>
+            <a href="index.php" class="btn-pricing btn-pricing-outline">Commander →</a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section" id="faq" style="text-align:center; padding-top:0;">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title fade-up">Questions fréquentes</h2>
+    <p class="section-sub fade-up" style="margin:0 auto 48px;">Tout ce que vous devez savoir avant de commencer.</p>
+
+    <div class="faq-list">
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">Comment recharger mon wallet FlexPay ?<i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-answer"><div class="faq-answer-inner">Vous pouvez recharger votre wallet directement depuis l'application en utilisant Flooz (Togocel) ou T-Money (Moov Africa). La confirmation est instantanée après paiement mobile.</div></div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">Combien de temps prend la livraison ?<i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-answer"><div class="faq-answer-inner">Pour les services streaming et gaming, la livraison est garantie en moins de 3 heures. Pour les commandes e-commerce (Shein, Amazon, AliExpress), comptez 72h max pour le traitement, et 15 à 45 jours pour la livraison physique selon le prestataire.</div></div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">Que se passe-t-il si ma commande ne peut pas être traitée ?<i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-answer"><div class="faq-answer-inner">En cas d'impossibilité de traitement, votre wallet est automatiquement recrédité du montant total sans aucune démarche de votre part. Un message WhatsApp vous confirme le remboursement.</div></div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">Comment les identifiants sont-ils livrés ?<i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-answer"><div class="faq-answer-inner">Les identifiants (email et mot de passe) sont envoyés directement sur votre WhatsApp par notre équipe dès que la commande est traitée. Tout est sécurisé et confidentiel.</div></div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">Puis-je commander pour quelqu'un d'autre ?<i class="fa-solid fa-chevron-down"></i> </div>
+            <div class="faq-answer"><div class="faq-answer-inner">Oui, tout à fait. Lors de la commande, vous pouvez indiquer l'adresse email d'une autre personne pour la création du compte. La livraison se fera sur votre WhatsApp.</div></div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">FlexPay est-il sécurisé ?<i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-answer"><div class="faq-answer-inner">Oui. Toutes les transactions sont sécurisées et chiffrées. Vos données personnelles ne sont jamais revendues. Les mots de passe sont hachés et sécurisés en base de données.</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section" id="contact">
+    <div style="max-width:800px; margin:0 auto;">
+        <div class="cta-box">
+            <h2 class="cta-title">Prêt à commencer ?</h2>
+            <p class="cta-sub">Rejoignez des milliers de Togolais qui accèdent aux services digitaux du monde entier grâce à FlexPay.</p>
+            <div class="cta-buttons">
+                <a href="index.php" class="btn-cta-white"><i class="fa-solid fa-rocket"></i> Créer un compte gratuit</a>
+                <a href="https://wa.me/22890000000" class="btn-cta-outline" target="_blank"><i class="fa-brands fa-whatsapp"></i> Nous contacter</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="logo">
+                    <img src="assets/images/logosolo.png" alt="FlexPay Logo" style="height: 38px; object-fit: contain;">
+                    <span class="logo-text">Flex<span style="color:var(--purple);">Pay</span></span>
+                </div>
+                <p class="footer-tagline">La solution de paiement digital pour les Africains. Payez global, depuis chez vous. 🇹🇬</p>
+                <div class="footer-socials">
+                    <div class="social-btn"><i class="fa-brands fa-whatsapp"></i></div>
+                    <div class="social-btn"><i class="fa-brands fa-instagram"></i></div>
+                    <div class="social-btn"><i class="fa-brands fa-facebook-f"></i></div>
+                    <div class="social-btn"><i class="fa-brands fa-tiktok"></i></div>
+                </div>
+            </div>
+            <div>
+                <div class="footer-col-title">Services</div>
+                <div class="footer-links">
+                    <a href="#">Streaming</a>
+                    <a href="#">E-Commerce</a>
+                    <a href="#">Gaming</a>
+                    <a href="#">SaaS & Logiciels</a>
+                    <a href="#">Tous les services</a>
+                </div>
+            </div>
+            <div>
+                <div class="footer-col-title">Application</div>
+                <div class="footer-links">
+                    <a href="index.php">Connexion</a>
+                    <a href="index.php">Créer un compte</a>
+                    <a href="index.php">Mon Wallet</a>
+                    <a href="index.php">Mes commandes</a>
+                </div>
+            </div>
+            <div>
+                <div class="footer-col-title">Société</div>
+                <div class="footer-links">
+                    <a href="#">À propos</a>
+                    <a href="#">Comment ça marche</a>
+                    <a href="#">Tarifs</a>
+                    <a href="#">FAQ</a>
+                </div>
+            </div>
+            <div>
+                <div class="footer-col-title">Contact</div>
+                <div class="footer-links">
+                    <a href="#">WhatsApp Support</a>
+                    <a href="#">support@flexpay.tg</a>
+                    <a href="#">Lomé, Togo 🇹🇬</a>
+                </div>
+                <div style="margin-top:20px;">
+                    <div class="mm-badge" style="margin-bottom:8px;"><img src="assets/images/logo_flooz.png" alt="Flooz" style="height: 16px;"> Togocel</div><br>
+                    <div class="mm-badge"><img src="assets/images/t-money_logo.webp" alt="T-Money" style="height: 16px;"> Moov Africa</div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 FlexPay. Tous droits réservés. Made in Togo <span class="flag">🇹🇬</span></span>
+            <div class="footer-bottom-links">
+                <a href="#">Confidentialité</a>
+                <a href="#">Conditions d'utilisation</a>
+                <a href="#">Remboursements</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('main-header');
+        if (window.scrollY > 20) { header.classList.add('scrolled'); }
+        else { header.classList.remove('scrolled'); }
+    });
+
+    // FAQ toggle
+    function toggleFaq(item) {
+        item.classList.toggle('open');
+    }
+
+    // Fade up on scroll
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    fadeEls.forEach(el => observer.observe(el));
+
+    // Smooth nav links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const target = document.querySelector(a.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // PWA Install Prompt & iOS Logic
+    let deferredPrompt;
+    const installAppBtn = document.getElementById('installAppBtn');
+
+    // Hide if already installed
+    if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
+        if (installAppBtn) installAppBtn.style.display = 'none';
+    } else {
+        if (installAppBtn) installAppBtn.style.display = 'inline-flex';
+    }
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+    });
+
+    if (installAppBtn) {
+        installAppBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                // Chrome / Android
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    installAppBtn.style.display = 'none';
+                }
+                deferredPrompt = null;
+            } else {
+                // iOS Safari or other browsers
+                const isIos = /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
+                if (isIos) {
+                    alert("📱 Pour installer FlexPay sur iPhone :\n\n1. Appuyez sur l'icône de partage (le carré avec une flèche vers le haut)\n2. Faites défiler et choisissez 'Sur l'écran d'accueil' ➕");
+                } else {
+                    alert("Pour installer l'application, ouvrez le menu de votre navigateur et choisissez 'Ajouter à l'écran d'accueil' ou 'Installer l'application'.");
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

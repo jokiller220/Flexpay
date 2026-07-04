@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Height</title>
+</head>
+<body>
+    <script>
+        fetch('index.php').then(r => r.text()).then(html => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            // We can't really get computed heights of unrendered elements, but we can look for inline styles.
+            document.body.innerHTML = "Done";
+        });
+    </script>
+</body>
+</html>

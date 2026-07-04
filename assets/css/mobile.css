@@ -1,0 +1,1161 @@
+/* ==================== ONBOARDING ==================== */
+
+/* Splash Screen */
+#view-splash {
+    background-color: var(--background-dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 20px;
+    color: white;
+}
+
+.splash-content {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--primary);
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 15px rgba(106, 13, 173, 0.4);
+}
+
+.logo-text {
+    font-size: 28px;
+    letter-spacing: 1px;
+    color: white;
+}
+
+.logo-text span {
+    color: var(--primary-light);
+}
+
+#view-splash p {
+    color: #9CA3AF;
+    font-size: 14px;
+    max-width: 250px;
+    margin: 0 auto;
+}
+
+.splash-illustration {
+    color: var(--primary);
+    margin-bottom: 40px;
+    filter: drop-shadow(0 0 20px rgba(106, 13, 173, 0.5));
+}
+
+/* Headers */
+.header-simple {
+    display: flex;
+    align-items: center;
+    padding: 0 20px 20px 20px;
+    padding-top: calc(20px + var(--sat));
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background: var(--background);
+    z-index: 100;
+}
+
+.header-simple h2 {
+    font-size: 1.1rem;
+    margin-left: 16px;
+    flex: 1;
+}
+
+.back-btn, .settings-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    color: var(--text-main);
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Auth Screens */
+.form-container {
+    padding: 0 20px;
+}
+
+.avatar-upload {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 40px 0;
+}
+
+.avatar-placeholder {
+    width: 80px;
+    height: 80px;
+    background-color: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    color: white;
+    box-shadow: 0 4px 15px rgba(106, 13, 173, 0.3);
+}
+
+.auth-link {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* OTP Screen */
+.otp-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.otp-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(106, 13, 173, 0.1);
+    color: var(--primary);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+    margin-bottom: 24px;
+}
+
+.otp-inputs {
+    display: flex;
+    gap: 12px;
+    margin: 30px 0;
+}
+
+.otp-inputs input {
+    width: 50px;
+    height: 60px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.otp-inputs input:focus {
+    border-color: var(--primary);
+}
+
+.resend-link {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+.resend-link span { color: var(--primary); font-weight: 500;}
+
+
+/* ==================== MAIN APP ==================== */
+
+/* Home Header */
+.home-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: calc(var(--sat) + 2px);
+    margin-left: 6px;
+    margin-right: 6px;
+    margin-bottom: 0;
+    padding: 16px 20px 130px 20px;
+    background-color: #0A0A1A;
+    background-image: radial-gradient(circle at 0% 0%, rgba(71, 38, 248, 0.25) 0%, transparent 40%),
+                      radial-gradient(circle at 100% 0%, rgba(71, 38, 248, 0.15) 0%, transparent 40%);
+    color: white;
+    border-radius: 30px;
+}
+
+.logo-small {
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+.logo-small span { color: var(--primary-light); }
+
+.notif-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* Wallet Card */
+.wallet-card {
+    background: linear-gradient(135deg, #5C32F8 0%, #3B1AD4 100%);
+    border-radius: 24px;
+    padding: 22px 24px 32px 24px;
+    color: white;
+    margin-top: -125px; 
+    margin-left: 12px;
+    margin-right: 12px;
+    box-shadow: 0 8px 24px rgba(71, 38, 248, 0.3);
+    position: relative;
+    z-index: 2;
+}
+
+.wallet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.wallet-balance {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.wallet-balance h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+}
+
+.wallet-balance span {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.wallet-balance i {
+    align-self: center;
+    margin-left: 4px;
+}
+
+.btn-recharge {
+    background: #F89300;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    box-shadow: none;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Sections */
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 24px 0 16px 0;
+}
+
+.section-title h3 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.section-title a {
+    font-size: 0.85rem;
+}
+
+/* Services Grid */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px 4px; /* More compact spacing */
+}
+
+.service-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+}
+
+.service-icon {
+    width: 52px;
+    height: 52px;
+    background: var(--card-bg);
+    border-radius: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    overflow: hidden;
+    border: none;
+}
+
+.service-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 14px;
+}
+
+.service-item span {
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: var(--text-main);
+    text-align: center;
+}
+
+/* Transactions List */
+.transactions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tx-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    background: var(--card-bg);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+}
+
+.tx-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    margin-right: 12px;
+}
+
+.tx-details {
+    flex: 1;
+}
+
+.tx-details h4 {
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+}
+
+.tx-details span {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.tx-amount {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.tx-amount.negative { color: var(--text-main); }
+.tx-amount.positive { color: var(--success); }
+
+/* Bottom Nav - Floating Pill Style */
+#bottom-nav {
+    position: fixed;
+    bottom: 20px; /* Floating above the bottom edge */
+    left: 20px;
+    width: calc(100% - 40px); /* Leave 20px margin on both sides */
+    padding: 6px 10px;
+    background: rgba(40, 25, 45, 0.95); /* Deep dark background matching aesthetic */
+    backdrop-filter: blur(15px); /* Glassmorphism */
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Subtle border */
+    border-radius: 40px; /* Pill shape */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* Reduced shadow so it doesn't hit the bottom of the screen */
+}
+
+.nav-indicator {
+    position: absolute;
+    top: 6px;
+    left: 10px; /* matches padding-left */
+    width: calc((100% - 20px) / 4); /* 4 nav items */
+    height: calc(100% - 12px); /* matches padding-top/bottom */
+    background: rgba(255, 255, 255, 0.15); /* Light pill background */
+    border-radius: 30px;
+    z-index: 0;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* Fluid slide animation */
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: rgba(255, 255, 255, 0.5); /* Lighter muted text */
+    font-size: 0.65rem;
+    font-weight: 500;
+    flex: 1; /* Equal spacing */
+    padding: 8px 0;
+    border-radius: 30px; /* Inner pill for active state */
+    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1; /* Above indicator */
+    position: relative;
+    cursor: pointer;
+}
+
+.nav-item i {
+    font-size: 1.3rem;
+    margin-bottom: 0px;
+    transition: transform 0.3s ease;
+}
+
+.nav-item.active {
+    color: #FFFFFF; /* Bright white text */
+}
+
+.nav-item.active i {
+    transform: scale(1.1); /* Slight pop on active */
+}
+
+/* ==================== ORDERS TRACKING ==================== */
+.tabs {
+    display: flex;
+    padding: 0 20px 10px 20px;
+    gap: 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tab {
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.tab.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.orders-list {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.order-card {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    background: var(--card-bg);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+}
+
+.order-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 16px;
+}
+
+.order-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.order-info h4 { font-size: 0.95rem; margin-bottom: 4px; }
+.order-id { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 2px;}
+.order-date { font-size: 0.75rem; color: var(--text-muted); }
+
+/* ==================== WALLET ==================== */
+.wallet-balance-card {
+    background: linear-gradient(135deg, #6A0DAD 0%, #3B82F6 100%);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    color: white;
+    box-shadow: 0 10px 25px rgba(106, 13, 173, 0.3);
+}
+
+.wallet-balance-card span { font-size: 0.9rem; opacity: 0.9; display: block; margin-bottom: 8px;}
+.wallet-balance-card h2 { font-size: 2.2rem; font-weight: 700; color: white;}
+.wallet-balance-card h2 span { font-size: 1.2rem; font-weight: 400; opacity: 0.8; display: inline;}
+
+.section-subtitle {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.recharge-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.method-item {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    background: var(--card-bg);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+}
+
+.method-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 16px;
+}
+
+.method-info {
+    flex: 1;
+}
+
+.method-info h4 { font-size: 0.95rem; margin-bottom: 4px; }
+.method-info span { font-size: 0.8rem; color: var(--text-muted); }
+
+.dropdown {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    padding: 4px 10px;
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+.tx-amount-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+}
+
+/* ==================== PROFILE ==================== */
+.profile-header {
+    background: linear-gradient(135deg, #6A0DAD 0%, #3B82F6 100%);
+    color: white;
+    padding: 0 20px 40px 20px;
+    padding-top: calc(20px + var(--sat));
+    position: relative;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    margin: 0;
+}
+
+.profile-header h2 { color: white; text-align: center; margin-bottom: 20px;}
+.edit-btn {
+    position: absolute;
+    top: calc(20px + var(--sat));
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.profile-user-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.profile-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+.profile-text h3 { color: white; font-size: 1.2rem; margin-bottom: 4px;}
+.profile-text span { font-size: 0.9rem; opacity: 0.8;}
+
+.profile-menu {
+    margin-top: 10px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+}
+
+.menu-item:last-of-type { border-bottom: none; }
+
+.menu-item > i:first-child {
+    font-size: 1.2rem;
+    color: var(--text-main);
+    width: 30px;
+    text-align: center;
+    margin-right: 12px;
+}
+
+.menu-text {
+    flex: 1;
+}
+
+.menu-text h4 { font-size: 0.95rem; font-weight: 500;}
+.menu-text span { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; display: block;}
+
+.menu-item > i:last-child {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* ==================== QUICK ORDER (NETFLIX) & UNIVERSAL FORM ==================== */
+
+/* Universal Order Form Styles */
+.order-form-sticky-header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--card-bg);
+    /* border removed for cleaner look with stepper */
+}
+
+.order-form-header {
+    display: flex;
+    align-items: center;
+    padding: 0 20px 10px 20px;
+    padding-top: calc(20px + var(--sat));
+    background: transparent;
+}
+
+.order-form-header-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: 12px;
+}
+
+.order-form-header-content h2 {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.order-form-stepper {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 20px 20px 20px;
+    background: transparent;
+}
+
+.step-dot {
+    width: 32px;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--border-color);
+    transition: all 0.3s;
+}
+
+.step-dot.active {
+    background: var(--primary);
+}
+
+.step-dot.done {
+    background: var(--primary-light);
+}
+
+.order-form-body {
+    padding: 0 20px 0 20px;
+    padding-bottom: calc(120px + var(--sab));
+}
+
+.of-section {
+    margin-bottom: 24px;
+}
+
+.of-q {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--text-main);
+}
+
+.account-choice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.account-choice-card {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 16px 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--card-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.account-choice-card i {
+    font-size: 24px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.account-choice-card strong {
+    font-size: 0.9rem;
+    display: block;
+}
+
+.account-choice-card span {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.account-choice-card.selected {
+    border-color: var(--primary);
+    background: rgba(106, 13, 173, 0.05);
+}
+
+.account-choice-card.selected i {
+    color: var(--primary);
+}
+
+.recap-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.recap-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 8px;
+}
+
+.recap-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.recap-row span {
+    color: var(--text-muted);
+}
+
+.recap-total {
+    font-size: 1.05rem;
+    font-weight: bold;
+    color: var(--text-main);
+    border-top: 1px solid var(--border-color);
+    border-bottom: none !important;
+    padding-top: 12px;
+    padding-bottom: 0 !important;
+}
+
+.alert-insufficient {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger);
+    padding: 12px;
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.delay-banner {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3B82F6;
+    padding: 12px;
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.of-hint {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 8px;
+    text-align: center;
+}
+
+.price-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--card-bg);
+    border: 1px dashed var(--primary);
+    padding: 16px;
+    border-radius: var(--radius-md);
+    margin-top: 16px;
+    font-size: 1rem;
+}
+
+.price-total-row strong {
+    color: var(--text-main);
+    font-size: 1.1rem;
+}
+
+.delivery-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.order-form-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 20px 0 20px;
+    padding-bottom: calc(20px + var(--sab));
+    background: var(--background);
+    border-top: 1px solid var(--border-color);
+    z-index: 10;
+}
+
+.order-success-screen {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.success-icon-wrap {
+    font-size: 64px;
+    color: var(--success);
+    margin-bottom: 24px;
+}
+
+.order-success-screen h2 {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+}
+
+.order-success-screen p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+
+.success-amount {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-main);
+    background: var(--card-bg);
+    padding: 16px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+}
+.plans-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.plan-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.plan-card.active {
+    border-color: var(--primary);
+    background: rgba(106, 13, 173, 0.05);
+}
+
+.plan-info h4 { font-size: 1rem; margin-bottom: 4px;}
+.plan-info span { font-size: 0.85rem; color: var(--text-muted);}
+
+.plan-check {
+    font-size: 1.2rem;
+    color: var(--border-color);
+}
+
+.plan-card.active .plan-check {
+    color: var(--primary);
+}
+
+.order-summary {
+    background: var(--secondary);
+    padding: 16px;
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+}
+
+.fixed-bottom-action {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+/* ==================== LINK ORDER ==================== */
+.link-icon-large {
+    width: 80px;
+    height: 80px;
+    background: rgba(106, 13, 173, 0.1);
+    color: var(--primary);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    margin: 0 auto;
+}
+
+.estimated-amount-card {
+    border: 1px dashed var(--primary);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    background: rgba(106, 13, 173, 0.02);
+    margin-top: 30px;
+}
+
+.estimated-amount-card h2 {
+    font-size: 2rem;
+    color: var(--text-main);
+    margin: 8px 0;
+}
+.estimated-amount-card h2 span { font-size: 1.2rem; font-weight: 400; color: var(--text-muted); }
+
+/* ==================== DESKTOP RESPONSIVE LAYOUTS ==================== */
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+#desktop-header {
+    display: none;
+    background-color: var(--background-dark);
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+
+
+.desktop-nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.desktop-nav-item {
+    color: #9CA3AF;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+    cursor: pointer;
+}
+
+.desktop-nav-item:hover, .desktop-nav-item.active {
+    color: #FFFFFF;
+}
+
+.view {
+    padding-bottom: calc(110px + var(--sab));
+}
+
+.view.with-bottom-nav {
+    padding-bottom: calc(80px + var(--sab));
+}
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(12%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.view.active {
+    animation: slideInFromRight 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+@media (min-width: 768px) {
+    #desktop-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 40px;
+    }
+    
+    #bottom-nav {
+        display: none !important;
+    }
+    
+    .view {
+        padding-top: 90px !important;
+        padding-bottom: 40px !important;
+        background-color: #F3F4F6 !important;
+    }
+    
+    .desktop-split {
+        display: flex;
+        gap: 32px;
+        align-items: flex-start;
+        width: 100%;
+    }
+    
+    .desktop-col-left {
+        flex: 1.3;
+    }
+    
+    .desktop-col-right {
+        flex: 1.7;
+    }
+    
+    /* Onboarding alignment on desktop */
+    #view-login .form-container,
+    #view-register .form-container,
+    #view-otp .otp-container {
+        max-width: 440px;
+        margin: 60px auto;
+        padding: 40px 30px;
+        background: #FFFFFF;
+        border-radius: var(--radius-lg);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+        border: 1px solid var(--border-color);
+    }
+    
+    #view-login .header-simple h2,
+    #view-register .header-simple h2,
+    #view-otp .header-simple h2 {
+        text-align: center;
+        font-size: 1.5rem;
+        margin-top: 40px;
+    }
+    
+    #view-login .header-simple,
+    #view-register .header-simple,
+    #view-otp .header-simple {
+        justify-content: center;
+        background: transparent;
+    }
+    
+    /* Sub-pages layout centering (OrderQuick, OrderLink) */
+    #view-order-quick .content-padded,
+    #view-order-link .content-padded {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 30px;
+        background: #FFFFFF;
+        border-radius: var(--radius-lg);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+        border: 1px solid var(--border-color);
+        position: relative;
+    }
+    
+    .fixed-bottom-action {
+        position: static !important;
+        margin-top: 30px;
+    }
+    
+    .home-header {
+        display: none !important; /* Hide small header on desktop since we have top nav */
+    }
+    
+    .wallet-card {
+        margin-top: 0px !important;
+        box-shadow: 0 8px 20px rgba(106, 13, 173, 0.2);
+    }
+    
+    /* Grid details */
+    .services-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 20px !important;
+    }
+    
+    .service-icon {
+        width: 60px !important;
+        height: 60px !important;
+        font-size: 28px !important;
+    }
+}

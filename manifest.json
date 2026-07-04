@@ -1,0 +1,21 @@
+{
+  "short_name": "FlexPay",
+  "name": "FlexPay Payment Service",
+  "icons": [
+    {
+      "src": "assets/images/newicone_v3.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "assets/images/newicone_v3.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#0B1021",
+  "background_color": "#0B1021",
+  "orientation": "portrait"
+}
