@@ -5,7 +5,7 @@ $env_host = getenv('DB_HOST') ?: getenv('MYSQLHOST');
 $env_port = getenv('DB_PORT') ?: getenv('MYSQLPORT') ?: '3306';
 $env_user = getenv('DB_USER') ?: getenv('MYSQLUSER');
 $env_pass = getenv('DB_PASS') ?: getenv('MYSQLPASSWORD');
-$env_name = getenv('DB_NAME') ?: getenv('MYSQLDATABASE') ?: 'flexpay';
+$env_name = getenv('DB_NAME') ?: getenv('MYSQLDATABASE') ?: 'esgis_flexpay';
 
 if ($env_host && $env_user) {
     $configs = [
@@ -14,6 +14,7 @@ if ($env_host && $env_user) {
 } else {
     // Probe list of common MySQL configurations
     $configs = [
+        ['host' => 'mysql-esgis.alwaysdata.net', 'port' => '3306', 'user' => 'esgis', 'pass' => 'panaSSi88@'], // AlwaysData
         ['host' => '127.0.0.1', 'port' => '3306', 'user' => 'root', 'pass' => 'root'], // MAMP default
         ['host' => '127.0.0.1', 'port' => '3306', 'user' => 'root', 'pass' => ''],     // XAMPP / standard default
         ['host' => 'localhost',  'port' => '3306', 'user' => 'root', 'pass' => 'root'],
