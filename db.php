@@ -37,7 +37,13 @@ foreach ($configs as $cfg) {
         $u  = $cfg['user'];
         $pw = $cfg['pass'];
 
-        $pdo = new PDO("mysql:host=$h;port=$p;charset=utf8mb4", $u, $pw);
+        try {
+            // Essayer de se connecter directement à la base de données (pour AlwaysData)
+            $pdo = new PDO("mysql:host=$h;port=$p;dbname=$env_name;charset=utf8mb4", $u, $pw);
+        } catch (PDOException $ex) {
+            // Si la base n'existe pas encore (en local), se connecter sans dbname
+            $pdo = new PDO("mysql:host=$h;port=$p;charset=utf8mb4", $u, $pw);
+        }
         $connected = true;
         break;
     } catch (PDOException $e) {
